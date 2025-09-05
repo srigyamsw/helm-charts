@@ -1,0 +1,72 @@
+apiVersion: v1
+entries:
+  apphub:
+  - apiVersion: v2
+    appVersion: "25.3"
+    created: "2025-09-05T12:14:59.8058812-07:00"
+    dependencies:
+    - name: helm-lib
+      repository: ""
+      version: 1.16.0-2
+    - alias: vault-client
+      name: itom-vault-client
+      repository: ""
+      version: 1.13.0-3
+    - alias: vault
+      name: itom-vault
+      repository: ""
+      version: 1.17.0-32
+    - condition: global.services.clusterManagement,terminalFalse
+      name: itom-kube-dashboard
+      repository: ""
+      version: 0.15.0-58
+    - condition: global.services.deploymentManagement,global.services.clusterManagement,terminalFalse
+      name: idm
+      repository: ""
+      version: 1.45.0-92
+    - alias: portalIngress
+      name: itom-ingress-controller
+      repository: ""
+      version: 1.17.0-75
+    - alias: defaultdb
+      condition: idm.deployment.database.internal,global.database.internal,terminalFalse
+      name: postgres16
+      repository: ""
+      version: 2.1.35
+    - alias: prometheus
+      condition: global.services.monitoring,terminalFalse
+      name: prometheus-operator
+      repository: ""
+      version: 1.17.0-168
+    - alias: fluentd
+      condition: global.services.logCollection,terminalFalse
+      name: itom-fluentbit
+      repository: ""
+      version: 1.10.0-39
+    - condition: global.services.deploymentManagement,terminalFalse
+      name: apphub-apiserver
+      repository: bosun
+      version: 1.12.0-46
+    - condition: global.services.deploymentManagement,terminalFalse
+      name: apphub-ui
+      repository: bosun
+      version: 1.12.0-59
+    - condition: pgbackup.enabled,idm.deployment.database.internal,global.database.internal,terminalFalse
+      name: pgbackup
+      repository: ""
+      version: 12.4.23
+    - condition: global.services.deploymentManagement,terminalFalse
+      name: itom-reloader
+      repository: ""
+      version: 1.13.0-28
+    - condition: global.prometheus.deployPrometheusConfig
+      name: prometheus-cert-exporter
+      repository: ""
+      version: 1.19.0-56
+    description: App Hub Composition Helm chart
+    digest: bc512dfcc9dc5c48be70ef1a2efdfca3fbfcf43bd0cc2b0252d75587bb50431f
+    name: apphub
+    urls:
+    - apphub-1.31.0+25.3.0-44.tgz
+    version: 1.31.0+25.3.0-44
+generated: "2025-09-05T12:14:59.76451-07:00"
