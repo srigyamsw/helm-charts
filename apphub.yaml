@@ -1,0 +1,76 @@
+acceptEula: true
+apphub-apiserver:
+  deployment:
+    database:
+      dbName: idm
+      user: idm
+      userPassword: ChangeMe2$
+cdfapiserver:
+  deployment:
+    database:
+      internal: true
+frontendIngress:
+  nginx:
+    service:
+      httpsPort: 30000
+global:
+  apphubAdmin:
+    userPassword: Admin@111
+  cluster:
+    k8sProvider: generic
+  database:
+    admin: admin
+    adminPassword: ChangeMe2$
+    createDb: true
+    host: null
+    internal: true
+    port: null
+    tlsEnabled: true
+    type: postgresql
+  docker:
+    imagePullPolicy: IfNotPresent
+    imagePullSecret: ""
+    orgName: hpeswitomsandbox
+    registry: itom-docker.svsartifactory.swinfra.net
+  expose:
+    enableALB: false
+  externalAccessHost: sac-sgyam-k3s01.otxlab.net
+  externalAccessPort: 30443
+  featureGates:
+    appHubUI: true
+  otel:
+    exporter:
+      enable: false
+    otlp:
+      client: null
+      endpoint: null
+      protocol: null
+    traces:
+      sampler: null
+  persistence:
+    accessMode: ReadWriteOnce
+    enabled: true
+    storageClasses:
+      default-rwo: local-path
+      default-rwx: local-path
+  securityContext:
+    fsGroup: 1999
+    user: 1999
+  services:
+    clusterManagement: false
+    deploymentManagement: true
+    logCollection: false
+    monitoring: false
+    suiteDeploymentManagement: true
+idm:
+  deployment:
+    database:
+      dbName: idm
+      user: idm
+      userPassword: ChangeMe2$
+portalIngress:
+  nginx:
+    service:
+      external:
+        clientCertAuthNodePort: 30002
+      httpsPort: 30001
